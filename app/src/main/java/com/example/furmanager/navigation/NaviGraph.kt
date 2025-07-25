@@ -1,10 +1,12 @@
 package com.example.furmanager.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.furmanager.ui.AuthViewModel
 import com.example.furmanager.ui.GetLayout
 import com.example.furmanager.ui.HomeScreen
 import com.example.furmanager.ui.LoginScreen
@@ -18,34 +20,38 @@ fun NaviGraph(navController: NavHostController) {
     ){
         composable("main") {
             GetLayout (
-                title = "Main",
-                onBack = {
-                    navController.navigate("login")
-                }
+                navController = navController
             )
         }
 
         composable("login") {
             LoginScreen(
-                navController = navController,
-                onRegister = {navController.navigate("register")}
+                viewModel = viewModel(),
+                navController = navController
             )
         }
         composable("register") {
             RegisterScreen(
-                onRegister = {navController.navigate("main")},
-                onAlreadyHaveAccount = { navController.navigate("login") }
+                viewModel = viewModel(),
+                navController = navController
             )
         }
-        composable(
-            route = "home/{username}",
-            arguments = listOf(navArgument("username") { defaultValue = "" })
-        ) { backStackEntry ->
-            val username = backStackEntry.arguments?.getString("username") ?: ""
+//        composable(
+//            route = "home/{username}",
+//            arguments = listOf(navArgument("username") { defaultValue = "" })
+//        ) { backStackEntry ->
+//            val username = backStackEntry.arguments?.getString("username") ?: ""
+//            HomeScreen(
+//                username = username,
+//                onSignOut = {navController.navigate("login")}
+//            )
+//        }
+        composable("home") {
             HomeScreen(
-                username = username,
-                onSignOut = {navController.navigate("login")}
+                viewModel = viewModel(),
+                navController = navController
             )
+
         }
     }
 }
