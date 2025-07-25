@@ -10,22 +10,30 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
-fun HomeScreen(username: String, onSignOut: () -> Unit ={}) {
+fun HomeScreen(viewModel: AuthViewModel, navController: NavController) {
+    val user = FirebaseAuth.getInstance().currentUser
+
     Column(
         modifier = Modifier.fillMaxWidth().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
 
     ){
-        Text(
-            text = username
-        )
-        Button(onClick = onSignOut) {
-            Text(
-                text = "Sign out"
-            )
+        Text("Xin chào, ${user?.email}")
+        Button(onClick = {
+            viewModel.signOut {
+                navController.navigate("login") {
+                    // Xóa backstack để không quay lại màn Home
+                    popUpTo("home") { inclusive = true }
+                }
+            }
+        }) {
+            Text("Sign Out")
         }
+
     }
 }
