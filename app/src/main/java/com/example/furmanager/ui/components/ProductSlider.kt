@@ -15,17 +15,13 @@ import com.example.furmanager.ui.components.ProductItem
 import com.google.accompanist.pager.*
 import com.example.furmanager.R
 import androidx.compose.foundation.lazy.items
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.furmanager.ui.components.Product
 
-@OptIn(ExperimentalPagerApi::class)
-data class Product(
-    val brand: String,
-    val title: String,
-    val price: String,
-    val imageUrl: Int
-)
 
 @Composable
-fun ProductSlider(products: List<Product>) {
+fun ProductSlider(products: List<Product>, navController: NavController) {
     val pagerState = rememberPagerState()
 
     Column(
@@ -52,10 +48,12 @@ fun ProductSlider(products: List<Product>) {
         ) {
             items(products) { product ->
                 ProductItem(
-                    brand = product.brand,
                     title= product.title,
                     price = product.price,
-                    imageUrl = product.imageUrl
+                    imageUrl = product.imageUrl,
+                    onDetailClick = {
+                        navController.navigate("cart")
+                    }
                  )
 
             }
@@ -73,10 +71,10 @@ fun ProductSlider(products: List<Product>) {
 @Composable
 fun showSlide(){
     val sampleProducts = listOf(
-        Product("Nike", "Air Max 90", "$129.99", R.drawable.sofa),
-        Product("Adidas", "Ultraboost", "$149.99", R.drawable.sofa),
-        Product("Puma", "RS-X", "$109.99",R.drawable.sofa)
+        Product("Air Max 90", "$129.99", R.drawable.sofa),
+        Product("Ultraboost", "$149.99", R.drawable.sofa),
+        Product("RS-X", "$109.99",R.drawable.sofa)
     )
-
-    ProductSlider(products = sampleProducts)
+    val navController = rememberNavController()
+    ProductSlider(products = sampleProducts, navController = navController)
 }

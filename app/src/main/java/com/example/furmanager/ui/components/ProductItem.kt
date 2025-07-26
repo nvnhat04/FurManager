@@ -23,17 +23,18 @@ import com.example.furmanager.R
 
 @Composable
 fun ProductItem(
-    brand: String,
     title: String,
     price: String,
-    imageUrl: Int
+    imageUrl: Int,
+    onDetailClick: () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
             .width(160.dp)
-            .padding(8.dp)
+            .padding(8.dp),
+        onClick = onDetailClick
     ) {
         Column(
             modifier = Modifier.padding(8.dp)
@@ -59,24 +60,24 @@ fun ProductItem(
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
-                text = brand,
+                text = price,
                 fontSize = 12.sp,
                 color = Color.Gray
             )
 
             Text(
                 text = title,
-                fontSize = 14.sp,
+                fontSize = 16.sp,
                 color = Color.Black,
                 fontWeight = FontWeight.Medium
             )
 
-            Text(
-                text = price,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
+//            TextButton(
+//                onClick = onDetailClick
+//            ) {
+//                Text("Detail")
+//            }
+
         }
     }
 }
@@ -84,10 +85,12 @@ fun ProductItem(
 @Composable
 fun show(){
     ProductItem(
-        brand = "brand",
         title = "title",
         price = "$10",
-        imageUrl = R.drawable.sofa
+        imageUrl = R.drawable.sofa,
+        onDetailClick = {
+
+        }
 
     )
 }

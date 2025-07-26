@@ -36,12 +36,13 @@ fun CartItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+            .padding(2.dp),
+        elevation = CardDefaults.cardElevation(4.dp),
+        onClick = onDetailClick
     ) {
         Row (
             modifier = Modifier
-                .padding(16.dp),
+                .padding(5.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
@@ -68,16 +69,6 @@ fun CartItem(
                 )
             }
 
-            Button(
-                onClick = onDetailClick,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Transparent,
-                    contentColor = Color.Black
-            ),
-            elevation = ButtonDefaults.buttonElevation(0.dp)
-            ) {
-                Text("Detail")
-            }
         }
     }
 }
