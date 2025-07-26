@@ -18,7 +18,7 @@ import com.example.furmanager.ui.RegisterScreen
 fun NaviGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = "main"
+        startDestination = "home"
     ){
         composable("main") {
             GetLayout (
@@ -62,9 +62,7 @@ fun NaviGraph(navController: NavHostController) {
         composable("profile") {
             ProfileScreen(
                 navController = navController,
-                onLogout = {
-
-                }
+                viewModel = viewModel()
             )
         }
     }

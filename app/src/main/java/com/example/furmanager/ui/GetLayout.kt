@@ -72,7 +72,6 @@ fun GetLayout(navController: NavController) {
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF333333)
             )
-
             Text(
                 text = "Manage and shop your furniture easily.",
                 fontSize = 16.sp,
