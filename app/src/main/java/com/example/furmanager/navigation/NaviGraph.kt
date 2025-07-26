@@ -7,9 +7,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.furmanager.ui.AuthViewModel
+import com.example.furmanager.ui.CartScreen
 import com.example.furmanager.ui.GetLayout
 import com.example.furmanager.ui.HomeScreen
 import com.example.furmanager.ui.LoginScreen
+import com.example.furmanager.ui.ProfileScreen
 import com.example.furmanager.ui.RegisterScreen
 
 @Composable
@@ -51,7 +53,19 @@ fun NaviGraph(navController: NavHostController) {
                 viewModel = viewModel(),
                 navController = navController
             )
+        }
+        composable("cart") {
+            CartScreen(
+                navController = navController
+            )
+        }
+        composable("profile") {
+            ProfileScreen(
+                navController = navController,
+                onLogout = {
 
+                }
+            )
         }
     }
 }
