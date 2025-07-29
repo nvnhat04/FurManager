@@ -18,7 +18,9 @@ fun NaviBar(navController: NavController) {
     val items = listOf(
         BottomNavItem("Home", Icons.Default.Home, "home"),
         BottomNavItem("Cart", Icons.Default.ShoppingCart, "cart"),
-        BottomNavItem("Profile", Icons.Default.Person, "profile")
+        BottomNavItem("Profile", Icons.Default.Person, "profile"),
+        BottomNavItem("CheckOut", Icons.Default.Checklist, "checkout")
+
     )
 
     NavigationBar {

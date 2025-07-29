@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
             val currentRoute = navBackStackEntry?.destination?.route
 
             // Danh sách route được phép hiện bottom bar
-            val bottomBarRoutes = listOf("home", "profile", "cart")
+            val bottomBarRoutes = listOf("home", "profile", "cart", "checkout")
 
             Scaffold(
                 bottomBar = {
