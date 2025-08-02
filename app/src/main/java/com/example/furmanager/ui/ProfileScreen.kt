@@ -123,7 +123,7 @@ fun ProfileScreen(navController: NavController, viewModel: AuthViewModel) {
             onClick = {
                 viewModel.signOut {
                     navController.navigate("login") {
-                        popUpTo("home") { inclusive = true }
+                        popUpTo(0) { inclusive = true }
                     }
                 }
             },

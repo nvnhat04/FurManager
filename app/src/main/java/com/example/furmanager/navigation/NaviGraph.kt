@@ -6,9 +6,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.furmanager.ui.AddProductScreen
+import com.example.furmanager.ui.AdminScreen
 import com.example.furmanager.ui.AuthViewModel
 import com.example.furmanager.ui.CartScreen
 import com.example.furmanager.ui.CheckOutScreen
+import com.example.furmanager.ui.DetailScreen
 import com.example.furmanager.ui.GetLayout
 import com.example.furmanager.ui.HomeScreen
 import com.example.furmanager.ui.LoginScreen
@@ -19,7 +22,7 @@ import com.example.furmanager.ui.RegisterScreen
 fun NaviGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = "home"
+        startDestination = "main"
     ){
         composable("main") {
             GetLayout (
@@ -69,6 +72,21 @@ fun NaviGraph(navController: NavHostController) {
             ProfileScreen(
                 navController = navController,
                 viewModel = viewModel()
+            )
+        }
+        composable("add-product") {
+            AddProductScreen(
+
+            )
+        }
+        composable("admin") {
+            AdminScreen(
+                navController = navController
+            )
+        }
+        composable("detail") {
+            DetailScreen(
+                navController = navController
             )
         }
     }

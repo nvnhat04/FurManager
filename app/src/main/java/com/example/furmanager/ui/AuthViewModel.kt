@@ -55,13 +55,24 @@ open class AuthViewModel : ViewModel() {
     fun login(
         email: String,
         password: String,
-        onSuccess: () -> Unit,
+        onSuccess: (String) -> Unit,
         onError: (String) -> Unit
     ) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    onSuccess()
+                    val uid = auth.currentUser?.uid ?: return@addOnCompleteListener
+                    FirebaseFirestore.getInstance()
+                        .collection("users")
+                        .document(uid)
+                        .get()
+                        .addOnSuccessListener { document ->
+                            val role = document.getString("role") ?: "user"
+                            onSuccess(role)
+                        }
+                        .addOnFailureListener {
+                            onError("Lỗi lấy dữ liệu role")
+                        }
                 } else {
                     onError(task.exception?.message ?: "Đăng nhập thất bại")
                 }
