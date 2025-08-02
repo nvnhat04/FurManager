@@ -14,14 +14,15 @@ data class BottomNavItem(
 )
 
 @Composable
-fun NaviBar(navController: NavController) {
-    val items = listOf(
-        BottomNavItem("Home", Icons.Default.Home, "home"),
-        BottomNavItem("Cart", Icons.Default.ShoppingCart, "cart"),
-        BottomNavItem("Profile", Icons.Default.Person, "profile"),
-        BottomNavItem("CheckOut", Icons.Default.Checklist, "checkout")
-
-    )
+fun NaviBar(navController: NavController, items: List<BottomNavItem>) {
+//    val items = listOf(
+//        BottomNavItem("Home", Icons.Default.Home, "home"),
+//        BottomNavItem("Cart", Icons.Default.ShoppingCart, "cart"),
+//        BottomNavItem("Profile", Icons.Default.Person, "profile"),
+//        BottomNavItem("CheckOut", Icons.Default.Checklist, "checkout"),
+//        BottomNavItem("Add", Icons.Default.Add, "add-product")
+//
+//    )
 
     NavigationBar {
         items.forEach { item ->

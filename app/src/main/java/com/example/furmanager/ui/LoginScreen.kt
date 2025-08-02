@@ -1,5 +1,6 @@
 package com.example.furmanager.ui
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.*
@@ -7,6 +8,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,6 +18,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun LoginScreen(viewModel: AuthViewModel, navController: NavController) {
+    val context = LocalContext.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf<String?>(null) }
@@ -41,8 +44,16 @@ fun LoginScreen(viewModel: AuthViewModel, navController: NavController) {
 
         Button(onClick = {
             viewModel.login(email, password,
-                onSuccess = { navController.navigate("home") },
-                onError = { error = it }
+                onSuccess = { role ->
+                    if (role == "admin") {
+                        navController.navigate("admin")
+                    } else {
+                        navController.navigate("home")
+                    }
+                },
+                onError = {
+                    Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                }
             )
         }) {
             Text("Login")

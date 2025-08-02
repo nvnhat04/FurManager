@@ -64,12 +64,13 @@ fun CheckOutScreen(navController: NavController) {
     }
 
     val products = listOf(
-        Product("Watermelon", "$10.99", R.drawable.sofa),
-        Product("Pear", "$8.99", R.drawable.sofa),
-        Product("Pear", "$8.99", R.drawable.table),
-        Product("Pear", "$8.99", R.drawable.sofa),
-
-        )
+        Product("1","Air Max 90", "$129.99", R.drawable.sofa),
+        Product("2","Ultraboost", "$149.99", R.drawable.sofa),
+        Product("3","RS-X", "$109.99", R.drawable.sofa, ),
+        Product("4","Air Max 90", "$129.99", R.drawable.sofa),
+        Product("5","Ultraboost", "$149.99", R.drawable.sofa),
+        Product("6","RS-X", "$109.99", R.drawable.sofa)
+    )
 
     val subtotal = products.sumOf {
         it.price.replace(Regex("[^0-9.]"), "").toDoubleOrNull() ?: 0.0

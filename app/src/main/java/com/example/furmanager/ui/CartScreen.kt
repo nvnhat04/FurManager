@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -37,13 +38,12 @@ import java.nio.file.WatchEvent
 @Composable
 fun CartScreen(navController: NavController) {
     val sampleProducts = listOf(
-        Product("Air Max 90", "$129.99", R.drawable.sofa),
-        Product("Ultraboost", "$149.99", R.drawable.sofa),
-        Product("RS-X", "$109.99", R.drawable.sofa),
-        Product("Air Max 90", "$129.99", R.drawable.table),
-        Product("Ultraboost", "$149.99", R.drawable.sofa),
-        Product("RS-X", "$109.99", R.drawable.table),
-        Product("RS-X", "$109.99", R.drawable.sofa)
+        Product("1","Air Max 90", "$129.99", R.drawable.sofa),
+        Product("2","Ultraboost", "$149.99", R.drawable.sofa),
+        Product("3","RS-X", "$109.99", R.drawable.sofa, ),
+        Product("4","Air Max 90", "$129.99", R.drawable.sofa),
+        Product("5","Ultraboost", "$149.99", R.drawable.sofa),
+        Product("6","RS-X", "$109.99", R.drawable.sofa)
     )
 
     val countList = remember { mutableStateListOf(*Array(sampleProducts.size) { 0 }) }
@@ -112,29 +112,40 @@ fun CartScreen(navController: NavController) {
             )
         }
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Button(onClick = {
-
-            }) {
+            Button(
+                onClick = { /* Handle buy */ },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF4CAF50)), // Màu xanh
+                modifier = Modifier
+                    .weight(1f)
+                    .height(48.dp)
+            ) {
                 Text(
                     text = "Buy",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = Color.Black
+                    color = Color.White
                 )
             }
-            Spacer(modifier = Modifier.width(16.dp))
-            Button(onClick = {
 
-            }) {
+            Button(
+                onClick = { /* Handle cancel */ },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF44336)), // Màu đỏ
+                modifier = Modifier
+                    .weight(1f)
+                    .height(48.dp)
+            ) {
                 Text(
                     text = "Cancel",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.Black
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color.White
                 )
             }
         }
+
     }
 }
 
